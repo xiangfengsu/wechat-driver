@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="header">
+    <image class="header-img" src="../../img/icon/home_02.jpg"></image>
+    <view class="header-btn" bind:tap="handleSignIn"></view>
+  </view>
+  <view>
+    <zan-tab
+      list="{{ dateTab.list }}"
+      selected-id="{{ dateTab.selectedId }}"
+      scroll="{{ dateTab.scroll }}"
+      height="{{ dateTab.height }}"
+      bind:tabchange="dateTabchange"
+    />
+  </view>
+  <view class="products">
+    <x-card
+      card-class="products-card"
+      wx:for="{{ products }}"
+      wx:key="{{ item.mealId }}"
+      thumb="{{ item.thumb }}"
+      info="{{ item.info }}"
+      price="{{ item.price }}"
+      mealType="{{item.mealType}}"
+      mealId="{{item.mealId}}"
+      orderBtn
+      bind:handleOrder="handleOrder"
+    >
+      <view slot="title-slot" class="x-card__title">
+        <view class="icon {{ item.icon }}"></view>
+        <text class="x-card__title-text">{{item.mealType=='1'?'午餐':'晚餐'}}</text>
+      </view>
+    </x-card>
+  </view>
+  <zan-dialog id="zan-dialog-sign">
+    <view class="dialog-sign">
+      <image class="dialog-sign__img" src="../../img/icon/home_07_03.jpg"></image>
+      <text class="dialog-sign__text">签到成功</text>
+      <text class="dialog-sign__message">获赠2张价值5元的优惠券，\n转发分享本小程序\n可额外获赠2张价值5元的优惠券.</text>
+    </view>
+  </zan-dialog>
+</view>

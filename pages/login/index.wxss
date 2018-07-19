@@ -1,0 +1,42 @@
+page{
+    background-color: #fff;
+}
+.loginBox{
+    width: 456rpx;
+    margin: 56rpx auto;
+}
+.logo{
+    width: 232rpx;
+    height: 258rpx;
+    margin: 0 auto 48rpx auto;
+    display: block;
+}
+.iphoneInput{
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 6rpx;
+    height: 104rpx;
+    color: rgb(153,153,153);
+    font-size: 28rpx;
+    padding-left:22rpx;
+    box-sizing: border-box;
+}
+.tips{
+   padding-top:20rpx;
+}
+.tips text{
+    color: rgb(153,153,153);
+    font-size: 24rpx;
+}
+.loginBtn{
+    margin-top: 58rpx;
+    color: #fff;
+    font-size: 34rpx;
+    text-align: center;
+    background-color: rgb(153,153,153);
+    border-radius: 10rpx;
+    height: 76rpx;
+    line-height: 76rpx;
+}
+.loginBtn.ok{
+    background-color: rgb(5,153,131);
+}

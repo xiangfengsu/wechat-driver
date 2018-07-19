@@ -1,0 +1,68 @@
+<view class="container">
+  <view class="info">
+    <view class="info-body">
+      <view class="info-body-left">
+        <text class="info-body-left__title">{{name}}</text>
+        <description
+          description-class="info-body-left__description"
+          descriptions="{{descriptions}}"
+        />
+      </view>
+      <view class="info-body-right">
+        <!-- <view class="info-body-right-map">
+          <view class="icon icon-map"></view>
+          <text class="info-body-right-map__text">查看地图</text>
+        </view> -->
+        <map-button map-info="{{sellerInfo}}"/>
+      </view>
+    </view>
+    <view class="info-footer">
+      <view class="icon icon-time"></view>
+      <text class="info-footer__text">预约<text class="color-green">{{orderTimeValue}}</text>到店领取</text>
+    </view>
+  </view>
+  <view class="product">
+    <!-- 商品信息 -->
+    <x-card
+      card-class="product-card"
+      thumb="{{ thumb }}"
+      info="{{ info }}"
+      price-right="{{ priceRight }}"
+      bind:handleOrder="handleOrder"
+    >
+    </x-card>
+    <!-- 优惠券 -->
+    <view
+      class="product-coupons"
+      bindtap="handleCoupons"
+      wx:for="{{coupons}}"
+      wx:key="{{index}}-{{item.title}}"
+      data-index="{{index}}"
+    >
+      <view class="product-coupons-left">
+        <text class="product-coupons-left__title">{{item.title}}</text>
+        <text class="product-coupons-left__price">{{item.priceText}}</text>
+      </view>
+      <view class="product-coupons-right">
+        <view class="icon-pay {{item.current?'icon-pay--active':''}}"></view>
+      </view>
+    </view>
+    <!-- 合计 -->
+    <view class="product-total">
+      <text class="product-total__prefix">合计：</text>
+      <text class="product-total__symbol">¥</text>
+      <text class="product-total__price">{{total}}</text>
+    </view>
+  </view>
+  <view class="pay-way">
+    <text>支付方式</text>
+    <text>在线支付</text>
+  </view>
+  <view class="pay">
+    <i-button i-class="pay-btn" bindtap="handlePay">
+      <text class="pay-btn__text">立即支付</text>
+      <text class="pay-btn__symbol">¥</text>
+      <text class="pay-btn__price">{{total}}</text>
+    </i-button>
+  </view>
+</view>

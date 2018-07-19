@@ -1,0 +1,58 @@
+<view class="container">
+    <view class="header">
+        <view class="userInfo row align_items_c" wx:if="{{loginStatus}}">
+            <image class="avatar" src="{{avatar}}"></image>  
+            <view class="userText">
+                <view class="name">{{name}}</view>
+                <view class="mobile">{{mobile}}</view>
+            </view> 
+        </view>  
+        <view class="loginBtnWrap"  bindtap="goLoginPageHandle" wx:else>登录/注册</view>  
+    </view>
+    <view class="context">
+        <templete wx:if="{{loginStatus && checkStatus == 1}}">
+            <zan-panel hideBorderTop>
+                <zan-cell title="讯羽优惠券" is-link url="/pages/coupon/index">
+                    <image  slot="icon" class="cell-icon" src="/img/mineicon/icon_1.jpg" />
+                </zan-cell>
+            </zan-panel>
+            <zan-panel hideBorderTop>
+                <zan-cell title="讯羽集团月卡" is-link url="/pages/card/index">
+                    <image  slot="icon" class="cell-icon" src="/img/mineicon/icon_2.jpg" />
+                </zan-cell>
+            </zan-panel>
+            <zan-panel hideBorderTop>
+                <zan-cell title="您的车牌"  value="{{platenumber}}">
+                    <image  slot="icon" class="cell-icon" src="/img/mineicon/icon_3.jpg" />
+                </zan-cell>
+            </zan-panel>
+        </templete> 
+        <templete wx:if="{{loginStatus && checkStatus < 1}}">
+            <zan-panel hideBorderTop wx:if="{{checkStatus < 1}}">
+                <zan-cell title="审核状态" label="{{statusText}}">
+                </zan-cell>
+            </zan-panel>
+            <zan-panel hideBorderTop wx:if="{{checkStatus == -1}}">
+                <zan-cell title="驳回原因" label="驾驶证图片不清楚">
+                    <view slot="footer" class="reeditBtn" bindtap="reeditHandle">重新编辑</view>
+                </zan-cell>
+            </zan-panel>
+        </templete>   
+        <zan-panel hideBorderTop>
+            <zan-cell title="平台协议及声明"    is-link>
+                <image  slot="icon" class="cell-icon" src="/img/mineicon/icon_4.jpg" />
+            </zan-cell>
+        </zan-panel>
+        <zan-panel hideBorderTop>
+            <zan-cell title="客服电话 {{phoneNumber}}" bindtap="callTelHandle">
+                <image  slot="icon" class="cell-icon" src="/img/mineicon/icon_5.jpg" />
+            </zan-cell>
+        </zan-panel>
+        
+    </view>
+    <view class="footer" wx:if="{{loginStatus}}">
+        <view class="loginoutBtn" bindtap="loginOutHandle">
+            退出账号
+        </view>
+    </view>
+</view>

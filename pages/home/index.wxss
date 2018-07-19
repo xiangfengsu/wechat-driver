@@ -1,0 +1,81 @@
+page {
+  background-color: #eeeff0;
+}
+
+.header {
+  position: relative;
+}
+
+.header-img {
+  width: 100%;
+  height: 300rpx;
+  vertical-align: middle;
+}
+
+.header-btn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 60rpx;
+  margin: 0 auto;
+  width: 247rpx;
+  height: 68rpx;
+}
+
+.icon {
+  width: 38rpx;
+  height: 38rpx;
+  background-size: cover;
+}
+
+.icon-lunch {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAQlBMVEX///8FmYP4/fw4rpzw+fiJz8UyrJqKz8Xm9fLU7uqu3teU08pJtaU+sJ8lppPi8/DQ7Oia1s2Y1cwtqZcsqZYmp5TFBp36AAAAoUlEQVQoz7VSSQ7DIAzsmLAvIdv/v9oGGoRIKx+qzsWMB8vr4/9YsHwXJeQnNzWxsYYgptO4w51mEqGPEyiqyaZoEC22ck8yAUiSfPnZq35WwB52QM1+GitSiPZlbYSisVyNWH0U7/0k2PfL4uj8q9bOYGt8g3Far5UAUBmhiQFZAWAiuZwVcqiW6ZOZEDNbdit07VNc+yT2Eu43xF/f73gC8MIFyeHUuQ0AAAAASUVORK5CYII=);
+}
+
+.icon-dinner {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAgVBMVEX///8FmYOFzsMqqZb3/Pv8/v4kppMOnYcKm4bo9vS24duv39h7yb1Yu6wwq5ggpJHy+vnk9PHN6+a+5d+W1ctqw7ZKtaYzrJrs+Pbn9fPY7+zH6OO/5d+75N2p3NSCzMFPt6hDs6I8sJ/5/fzf8u/e8e6m29OY1cyP0chyxblhv7HKQQJ/AAAAuElEQVQoz8WSVw6DMBBEPTa9mF4DAdKT+x8wijEo8h6A9zXSc1nvmh2IHVTC9ZI6ZJSigcLJqONAwvPexUBdBEwWYyUW6gJAXRWjpLUIcBUuKIg8w7G0HImMwbfwJNJBvoYSM5Ee2jV0Hk6mdOHr9IbwDSn29amE7GlBmk7Cq4b0eiNPUXsr/Fj+mzCxnXskgIC0T9NKzEbj+XZy4aiSycgsO3vUQGPOdGygcSOLjib8qG/y8tmxfAG+mAfTJRnmhAAAAABJRU5ErkJggg==);
+}
+
+.x-card__title {
+  display: flex;
+  align-items: center;
+  padding: 5rpx 0 15rpx;
+}
+
+.x-card__title-text {
+  margin-left: 10rpx;
+  font-size: 26rpx;
+  color: rgb(155, 155, 155);
+}
+
+.products {
+  margin-top: 20rpx;
+}
+
+.products-card {
+  margin-top: 1px;
+}
+
+.dialog-sign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 10rpx;
+}
+
+.dialog-sign__img {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 18rpx;
+}
+
+.dialog-sign__text {
+  font-size: 38rpx;
+  margin-bottom: 18rpx;
+}
+
+.dialog-sign__message {
+  font-size: 28rpx;
+  color: rgb(155, 155, 155);
+}

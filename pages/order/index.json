@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "订单",
+  "usingComponents": {
+    "description": "../../components/description/index",
+    "zan-dialog": "../../components/dialog/index",
+    "zan-actionsheet": "../../components/orderActionsheet/index",
+    "i-button": "../../components/iview/button/index",
+    "map-button": "../../components/mapButton/index"
+  }
+}

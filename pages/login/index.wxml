@@ -1,0 +1,14 @@
+<view class="container">
+    <view class="loginBox">
+        <image src="../../img/logo.jpg" class="logo"/>
+        <form bindsubmit="formSubmit">
+            <view>
+                 <input placeholder="请输入手机号" maxlength="11" class="iphoneInput" name="iphone" type="number" bindinput="handleInput"/>
+            </view>
+            <view class="tips">
+                <text>如果手机号码未注册司机之家，我们将为您创建账号</text>
+            </view>
+            <button class="loginBtn {{validate?'ok':''}}"  formType="submit">下一步</button>
+        </form>
+    </view>
+</view>

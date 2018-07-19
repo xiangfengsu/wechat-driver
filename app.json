@@ -1,0 +1,52 @@
+{
+  "pages":[
+    "pages/home/index",
+    "pages/mine/index",
+    "pages/pay/index",
+    
+    "pages/order/index",
+    "pages/appointment/index",
+    "pages/paySuccess/index",
+    
+    "pages/coupon/index",
+    "pages/login/index",
+    "pages/register/index",
+    "pages/loginCode/index",
+    "pages/card/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "selectedColor": "#059983",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "img/icon/nav_icon_11-2_11.png",
+        "selectedIconPath": "img/icon/nav_icon_11.png"
+      },
+      {
+        "pagePath": "pages/order/index",
+        "text": "订单",
+        "iconPath": "img/icon/nav_icon_13.png",
+        "selectedIconPath": "img/icon/nav_icon__13.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "img/icon/nav_icon_15.png",
+        "selectedIconPath": "img/icon/nav_icon__15.png"
+      }
+    ]
+  },
+  "plugins": {
+    "myPlugin": {
+      "version": "1.0.6",
+      "provider": "wx5bc2ac602a747594"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.description {
+  display: flex;
+  flex-direction: column;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  color: rgb(102, 102, 102);
+}

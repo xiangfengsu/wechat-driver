@@ -1,0 +1,39 @@
+.codeBtn{
+	width: 180rpx;
+	height: 65rpx;
+	background-color:rgb(228,229,231);
+	color: rgb(51, 51, 51);
+	font-size: 30rpx;
+	border-radius: 10rpx;
+	margin-left: 15rpx;
+}
+.formItem{
+	height: 88rpx;
+	border-bottom: 1px solid #eaeaea;
+	padding: 0 20rpx;
+    
+}
+.labelText{
+	font-size: 30rpx;
+	color: rgb(51, 51, 51);
+}
+.placeholderText{
+	font-size: 30rpx;
+	color:rgb(153, 153, 153);
+}
+.forminput{
+	margin-left: 50rpx;
+}
+.btnSubmit{
+	padding: 0 20rpx;
+}
+.loginBtn{
+	color: #fff;
+	font-size: 34rpx;
+	background-color: rgb(5, 153, 131);
+	margin-top: 88rpx;
+	opacity: 1;
+}
+.loginBtn.ok{
+	opacity: 1;
+}

@@ -1,0 +1,38 @@
+<view class="x-card card-class">
+  <slot name="title-slot"></slot>
+  <view class="x-card__body">
+    <!-- 左侧图片 -->
+    <view class="x-card__thumb">
+      <image class="x-card__img" src="{{ thumb[0] }}" bind:tap="handleThumb" mode="aspectFit"></image>
+      <!-- <swiper class="x-card__img" indicator-dots="{{indicatorDots}}" autoplay interval="5000" duration="1000">
+        <block wx:for="{{thumb}}" wx:key="{{item}}">
+          <swiper-item>
+            <image class="x-card__img" src="{{item}}" mode="aspectFit"/>
+          </swiper-item>
+        </block>
+      </swiper> -->
+    </view>
+    <!-- 右侧详情 -->
+    <view class="x-card__detail">
+      <view class="x-card__left-col">
+        <view class="x-card__detail-info">
+          <text wx:for="{{ info }}" wx:key="{{ info }}">{{ item }}</text>
+        </view>
+        <text wx:if="{{ price }}" class="x-card-info__price"><text class="x-card__prefix">¥</text>{{ price }}</text>
+      </view>
+      <view class="x-card__right-col">
+        <text wx:if="{{ priceRight }}" class="x-card-info__price x-card__right-price"><text class="x-card__prefix">¥</text>{{ priceRight }}</text>
+        <view
+          class="x-card__order-btn"
+          wx:if="{{ orderBtn }}"
+          data-mealType="{{ mealType }}"
+          data-mealId="{{ mealId }}"
+          bind:tap="handleOrderTap"
+        >
+          立即预约
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

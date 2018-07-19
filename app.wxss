@@ -1,0 +1,48 @@
+.container {
+  box-sizing: border-box;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+
+view,test{
+  box-sizing: border-box;
+}
+
+.border{
+  border:1px solid red;
+}
+.row {
+  display: flex;
+}
+.column{
+	flex-direction:column;
+}
+.just_cont_s {
+  justify-content: space-around;
+}
+.just_cont_end {
+  justify-content: flex-end;
+}
+.just_cont_sb {
+  justify-content: space-between
+}
+.just_cont_c{
+  justify-content: center;
+}
+.align_items_c {
+  align-items: center;
+}
+.align_items_end {
+  align-items: flex-end;
+}
+.flex {
+  flex: 1;
+}
+.line-b{
+  border:1rpx solid rga(202,202,202);
+}
+.line-t{
+  border:1rpx solid rga(202,202,202);
+}
+.labelText{
+	color: rgb(51, 51, 51) !important;
+}

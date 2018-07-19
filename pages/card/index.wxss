@@ -1,0 +1,18 @@
+page{
+    background-color:#eeeff0;
+}
+.cardBox{
+    width: 672rpx;
+    margin: 40rpx auto;
+}
+.card{
+    width: 672rpx;
+    height: 399rpx;
+    display: block;
+    margin-bottom: 46rpx;
+}
+.text{
+    font-size: 30rpx;
+    color: rgb(102, 102, 102);
+    line-height: 2;
+}

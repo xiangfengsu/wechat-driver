@@ -1,0 +1,64 @@
+<view class="container registerBox">
+  <form bindsubmit="formSubmit" >
+    <view wx:for="{{config.base}}" wx:key="itemBase.key"  wx:for-item="itemBase" hidden="{{itemBase.hidden?true:false}}">
+      <zan-panel hideBorderTop >
+        <zan-field 
+          name="{{itemBase.key}}"
+          title="{{itemBase.title}}" 
+          placeholder="{{itemBase.placeholder}}"
+          maxlength="{{itemBase.maxlength}}"
+          inputType="{{itemBase.inputType}}"
+          value="{{itemBase.value}}"
+          bind:change="handleFieldChange"
+          data-key="{{itemBase.key}}"
+        >
+        </zan-field>
+      </zan-panel>
+    </view>
+    <zan-panel hideBorderTop>
+      <zan-cell title="省份"  is-link>
+          <picker bindchange="regionChange" data-type="province" value="{{provinceIndex}}" range="{{regionData}}" range-key="label" >
+            <view class="regionpicker {{ provinceIndex ===-1 ?'':'labelText'}}">
+              {{
+                provinceIndex === -1? '请选择省份':regionData[provinceIndex].label
+              }}
+            </view>
+          </picker>
+      </zan-cell>
+    </zan-panel>
+    <zan-panel hideBorderTop>
+        <zan-cell title="城市"  is-link>
+            <picker bindchange="regionChange"  data-type="city" value="{{cityIndex}}" range="{{regionData[provinceIndex].children}}" range-key="label">
+              <view class="regionpicker {{ cityIndex ===-1 ?'':'labelText'}}">
+                  {{
+                    cityIndex === -1? '请选择城市':regionData[provinceIndex].children[cityIndex].label
+                  }}
+              </view>
+            </picker>
+        </zan-cell>
+    </zan-panel>
+    <view class="pictureBox" wx:for="{{imgList}}" wx:key="item.key">
+      <view class="labelText tipText">
+        {{item.title}}
+      </view>
+      <view class="imgBox">
+        <view class="tipBox" bindtap="previewImageHandle" data-url="{{item.url}}">
+            <image src="{{item.url}}" class="img" />
+        </view>
+        <view class="cameraBtn" bindtap="chooseImageHandle" data-type="{{item.key}}">
+            <image src="../../img/cameraBtn.png" />
+        </view>  
+      </view>
+    </view>
+    <view class="serviceBox row align_items_c just_cont_c">
+        <checkbox-group name="service">
+            <checkbox value="checked" checked="checked" color="rgb(5,142,120)"/>
+        </checkbox-group>
+        <text class="t1">我已阅读并同意</text>
+        <text class="t2">《用户服务协议》</text>
+    </view>
+    <view class="formBtn">
+        <button formType="submit">提交审核</button>
+    </view>
+  </form>
+</view>

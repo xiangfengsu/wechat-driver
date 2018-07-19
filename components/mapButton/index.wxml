@@ -1,0 +1,6 @@
+<view>
+  <view class="map-btn" bindtap="handleOpenMap">
+    <view class="icon map-icon"></view>
+    <text class="map-btn__text">查看地图</text>
+  </view>
+</view>

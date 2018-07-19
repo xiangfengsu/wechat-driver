@@ -1,0 +1,13 @@
+{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "用户注册",
+    "navigationBarTextStyle":"black",
+    "usingComponents": {
+        "zan-cell": "../../components/cell/index",
+        "zan-panel": "../../components/panel/index",
+        "zan-field": "../../components/field/index",
+        "zan-cell-group": "../../components/cell-group/index"
+
+      }
+}

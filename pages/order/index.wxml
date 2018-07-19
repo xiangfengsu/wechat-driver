@@ -1,0 +1,76 @@
+<view class="container">
+  <!-- 订单列表 -->
+  <block wx:if="{{isLogin}}">
+    <block wx:if="{{orderList.length>0}}">
+        <view class="content" wx:for="{{orderList}}" wx:for-item="orderItem" wx:for-index="orderIndex" wx:key="{{orderItem.orderId}}">
+          <view class="orders">
+            <view class="card">
+              <view class="card-header">
+                <view class="card-header-left">{{orderItem.orderDate}} {{mealType[orderItem.mealType]}}</view>
+                <view class="card-header-right">订单{{orderStatus[orderItem.orderStatus]}}</view>
+              </view>
+              <view class="card-body">
+                <view class="card-body-content">
+                  <view class="card-body-content-left">
+                    <div class="card-body-content__name">{{orderItem.name}}</div>
+                    <div class="card-body-content__address">{{orderItem.address}}</div>
+                    <description
+                      description-class="card-body-content__description"
+                      descriptions="{{['主菜：'+orderItem.mainFood +' x 1', '配菜：'+orderItem.secondFood +' x 1','主食：'+orderItem.mainMeal +' x 1','例汤：'+orderItem.soup +' x 1']}}"
+                    />
+                  </view>
+                  <view class="card-body-content-right">
+                    <view class="card-body-content-map">
+                      <map-button map-info="{{orderItem}}"></map-button>
+                    </view>
+                  </view>
+                </view>
+                <view class="card-body-price">
+                  <text class="card-body-price__label">实付：</text>
+                  <text class="card-body-price__prefix">¥</text>
+                  <text class="card-body-price__text">{{orderItem.amount}}</text>
+                </view>
+              </view>
+              <view class="card-footer" wx:if="{{orderItem.orderStatus!= 2}}">
+                <view class="card-footer-btn__qr" bind:tap="handleQR" wx:if="{{orderItem.orderStatus == 1}}" data-qrcodeurl="{{orderItem.qrCodeImage}}">二维码取餐</view>
+                <view class="card-footer-btn__refund" bind:tap="handleRefund" wx:if="{{orderItem.orderStatus == 1}}">退款</view>
+                <view class="card-footer-btn__refunded" wx:if="{{orderItem.orderStatus == 3}}">已退款</view>
+              </view>
+            </view>
+          </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="failed">
+          <image class="failed__img" src="/img/icon/dingdan_.png"></image>
+          <text class="failed__text">暂无订单信息</text>
+        </view>
+    </block>
+    
+  </block>
+  <block wx:else>
+    <view class="failed">
+      <image class="failed__img" src="/img/icon/dingdan_.png"></image>
+      <text class="failed__text">您还没有登录，请登录后查看订单</text>
+      <i-button i-class="failed__btn" bindtap="handleLogin">登录</i-button>
+    </view>
+  </block>
+
+  <zan-dialog id="zan-dialog-refund" />
+  <zan-dialog id="zan-dialog-qr">
+    <view style="color: #f66">
+      <image class="qrcode" src="{{qrCodeImage}}"></image>
+    </view>
+  </zan-dialog>
+  <zan-actionsheet
+    subname-class="refundActionsheet-subname"
+    show="{{ refundActionsheet.show }}"
+    actions="{{ refundActionsheet.actions }}"
+    cancel-text="{{ refundActionsheet.cancelText }}"
+    cancel-with-mask="{{ refundActionsheet.cancelWithMask }}"
+    bind:cancel="closeRefundActionsheet"
+    bind:actionclick="clickRefundAction"
+    mask-class="tiny"
+  />
+  
+</view>

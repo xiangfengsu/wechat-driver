@@ -1,0 +1,12 @@
+{
+    "backgroundTextStyle":"white",
+    "navigationBarBackgroundColor": "#058e78",
+    "navigationBarTitleText": "我的",
+    "navigationBarTextStyle":"white",
+    "usingComponents": {
+        "zan-cell": "../../components/cell/index",
+        "zan-panel": "../../components/panel/index",
+        "zan-cell-group": "../../components/cell-group/index"
+    },
+    "disableScroll":true
+}

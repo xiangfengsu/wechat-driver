@@ -1,0 +1,63 @@
+page{
+    background-color:#eeeff0;
+}
+picker{
+    flex:1;
+}
+.registerBox{
+    padding-bottom: 30rpx;
+}
+.regionpicker{
+    font-size: 14px;
+    color: rgb(153, 153, 153);
+    padding-left: 5px;
+}
+.pictureBox{
+    margin-top: 20rpx;
+    padding: 40rpx 20rpx;
+    background-color: #fff;
+}
+.tipText{
+    font-size: 28rpx;
+}
+.imgBox{
+    position: relative;
+}
+.imgBox .img{
+    width: 549rpx;
+    height: 318rpx;
+    margin: 0 auto;
+    display: block;
+    margin-top: 23rpx;
+}
+.cameraBtn{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -73rpx;
+    margin-top: -73rpx;
+
+}
+.cameraBtn image{
+    width: 146rpx;
+    height: 146rpx;
+    display: block;
+}
+.formBtn{
+    padding: 0 20rpx;
+    margin: 30rpx auto 0 auto;
+}
+.formBtn button{
+    background-color: rgb(5,142,120);
+    color: #fff;
+}
+.serviceBox{
+    font-size: 26rpx;
+    margin-top: 30rpx;
+}
+.serviceBox .t1{
+    color: rgb(153, 153, 153);
+}
+.serviceBox .t2{
+    color: rgb(5,142,120);
+}

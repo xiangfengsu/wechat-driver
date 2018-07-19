@@ -1,0 +1,3 @@
+<view class="description description-class">
+  <text wx:for="{{ descriptions }}" wx:key="{{ index }} - {{ item }}">{{ item }}</text>
+</view>

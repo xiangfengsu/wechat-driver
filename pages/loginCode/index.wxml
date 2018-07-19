@@ -1,0 +1,35 @@
+<view class="container">
+  <form class='formWrap ' bindsubmit="formSubmit">
+    <view class="registerForm">
+      <!-- 手机号 -->
+      <view class='panelFormItem'>
+        <view class='formItem row align_items_c just_cont_sb'>
+          <view class="row align_items_c">
+            <text class='labelText'>手机号</text>
+            <input type="number" value="{{iphone}}" placeholder="请输入您的手机号" disabled='disabled' id="mobilePhone" name="mobile" class="placeholderText forminput labelText" focus="true" maxlength="11" bindinput="bindIphoneInput" placeholder-class="placeholderText" />
+          </view>
+          <view class="placeholderText rightText row align_items_c just_cont_end">
+            <view class='codeBtn row align_items_c just_cont_c' bindtap="achieveCode">
+              <text>{{codeText}}</text>
+              <!-- 59秒后获取 -->
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 验证码 -->
+      <view class='panelFormItem'>
+        <view class="formItem row align_items_c just_cont_sb">
+          <view class="row align_items_c">
+            <text class="labelText">验证码</text>
+            <input type="number" placeholder="请输入验证码" class="placeholderText forminput labelText" maxlength="4" id="smsVerifyCode" name="smsVerifyCode" placeholder-class="placeholderText" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="btnSubmit">
+      <button class="loginBtn" form-type='submit'>验证</button>
+    </view>
+
+  </form>
+</view>

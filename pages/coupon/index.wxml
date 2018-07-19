@@ -1,0 +1,22 @@
+<view class="container">
+    <view class="couponList">
+        <view class="couponItem" wx:for="{{cashRedList}}" wx:key="index" >
+            <view class="wrap row align_items_c just_cont_sb">
+                <view class="l-info row align_items_c">
+                    <image class="icon" src="../../img/ticket_icon.jpg" />
+                    <view class="couponText">
+                        <view class="t1">羽讯优惠券</view>
+                        <view class="t2">有效期：{{item.enddate}}</view>
+                    </view>
+                </view>
+                <view class="couponMoney">
+                    <text class="dot">￥</text>
+                    <text class="num">{{item.totalCash}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="nocoupontip" hidden>
+            暂无优惠券~~
+        </view>
+    </view>
+</view>

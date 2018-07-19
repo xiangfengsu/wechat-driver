@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="title">取餐点</view>
+  <i-panel>
+    <i-radio-group current="{{currentRadio}}" bindchange="handleRadioChange">
+      <scroll-view scroll-y style="height: 600rpx;">
+        <i-radio color="#059983" wx:for="{{sellerList}}" wx:key="{{item.key}}" value="{{item.key}}"  showValue="{{false}}">
+          <view class="radio-slot">
+            <view class="radio-slot-left">
+              <view class="radio-slotleft-row">
+                <text class="radio-slot__name">{{item.name}}</text>
+                <text class="radio-slot__distance">{{item.distance}}km</text>
+              </view>
+              <view class="radio-slot-left-row">
+                <view class="icon-location"></view>
+                <text class="radio-slot-location">{{item.address}}</text>
+              </view>
+            </view>
+            <view class="radio-slot-left">
+                <map-button map-info="{{item}}"></map-button>
+            </view>
+          </view>
+        </i-radio>
+      </scroll-view>
+    </i-radio-group>
+  </i-panel>
+  <view class="title">取餐时间</view>
+  <view class="time-picker">
+    <view
+      class="time-picker__item {{currentTime == item.key?'time-picker__item--active':''}}"
+      wx:for="{{timePicker}}"
+      data-index="{{item.key}}"
+      wx:key="{{item.key}}"
+      bind:tap="handleTimePicker"
+    >
+      {{item.value}}
+    </view>
+  </view>
+  <view class="footer">
+    <i-button i-class="footer-btn" bindtap="handleOrderFood">立即订餐</i-button>
+  </view>
+</view>

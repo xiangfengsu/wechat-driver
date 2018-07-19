@@ -1,0 +1,65 @@
+page{
+    background-color:#eeeff0;
+}
+.header{
+    background-color: #058e78;
+    padding: 40rpx 0 80rpx 0;
+}
+.context{
+    margin-top: 20rpx;
+}
+.loginBtnWrap{
+    width: 220rpx;
+    height: 90rpx;
+    border: 1px solid #fff;
+    text-align: center;
+    color: #fff;
+    font-size: 34rpx;
+    border-radius: 6rpx;
+    line-height: 90rpx;
+    margin: 0 auto;
+}
+.userInfo{
+    margin-left: 50rpx;
+}
+.avatar{
+    width: 148rpx;
+    height: 148rpx;
+    display: block;
+    border-radius: 100%;
+}
+.userText{
+    margin-left: 30rpx;
+}
+.userText .name{
+    color: #fff;
+    font-size: 38rpx;
+}
+.userText .mobile{
+    color: #7ce9d9;
+    font-size: 28rpx;
+}
+.context .cell-icon{
+    width: 54rpx;
+    height: 54rpx;
+    display: block;
+    vertical-align: middle;
+}
+.footer{
+    margin-top: 20rpx;
+}
+.loginoutBtn{
+    font-size: 32rpx;
+    color: rgb(51,51,51);
+    text-align: center;
+    background:#fff;
+    padding: 20rpx 0;
+}
+.reeditBtn{
+    background-color: rgb(233, 233, 233);
+    color: rgb(51,51,51);
+    font-size: 26rpx;
+    padding: 8rpx 12rpx;
+    border:1rpx solid rgb(214,214,214);
+    border-radius: 6rpx;
+}

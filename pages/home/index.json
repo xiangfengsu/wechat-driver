@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "迅羽司机之家",
+  "usingComponents": {
+    "zan-tab": "../../components/dateTab/index",
+    "x-card": "../../components/productCard/index",
+    "zan-dialog": "../../components/dialog/index"
+  }
+}

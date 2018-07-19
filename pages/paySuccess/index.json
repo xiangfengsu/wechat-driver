@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "迅羽司机之家",
+  "usingComponents": {
+    "description": "../../components/description/index",
+    "x-card": "../../components/productCard/index",
+    "i-button": "../../components/iview/button/index",
+    "map-button": "../../components/mapButton/index"
+  }
+}

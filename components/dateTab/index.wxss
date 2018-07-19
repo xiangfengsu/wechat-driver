@@ -1,0 +1,83 @@
+.zan-tab {
+  height: 116rpx !important;
+}
+
+.zan-tab__bd {
+  width: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  border-bottom: 1rpx solid #e5e5e5;
+  background: #fff
+}
+
+.zan-tab__bd--fixed {
+  position: fixed;
+  top: 0;
+  z-index: 2
+}
+
+.zan-tab__item {
+  -webkit-box-flex: 1;
+  flex: 1;
+  display: inline-block;
+  padding: 0 5px;
+  line-height: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
+  height: 120rpx;
+}
+
+.zan-tab__title {
+  box-sizing: initial;
+  display: flex;
+  flex-direction: column;
+  font-size: 26rpx;
+  line-height: initial !important;
+  height: 116rpx !important;
+  align-items: center;
+  justify-content: center;
+  /* display: inline-block;
+  max-width: 100%;
+  height: 44px;
+  line-height: 44px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  word-break: keep-all;
+  font-size: 14px;
+  color: #666 */
+}
+
+.zan-tab__item--selected .zan-tab__title {
+  color: #059983;
+  border-bottom: 8rpx solid #059983
+}
+
+.zan-tab__item--selected .zan-tab__title-content,
+.zan-tab__item--selected .zan-tab__title-text {
+  color: #059983 !important;
+}
+
+.zan-tab__bd--scroll {
+  display: block;
+  white-space: nowrap;
+  height: 120rpx !important;
+}
+
+.zan-tab__bd--scroll .zan-tab__item {
+  min-width: 80px;
+}
+
+.zan-tab__title-text {
+  color: rgb(51, 51, 51);
+  font-size: 26rpx;
+}
+
+.zan-tab__title-content {
+  font-size: 24rpx;
+  color: rgb(153, 153, 153)
+}

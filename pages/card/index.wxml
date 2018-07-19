@@ -1,0 +1,7 @@
+<view class="container">
+    <view class="cardBox">
+        <image class="card" src="../../img/card.png"></image>
+        <view class="text">1.月卡生效期间，每次使用可以立减5元.</view>
+        <view class="text">2.当前若无月卡，购买后月卡立即生效.</view>
+    </view>
+</view>
