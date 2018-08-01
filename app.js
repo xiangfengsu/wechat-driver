@@ -1,6 +1,7 @@
 //app.js
 
 import req from './utils/request.js';
+import { wechatLogoin } from './utils/util.js';
 const config = {
   // serverUrl: 'http://118.190.154.11:3000/mock/18/wx'
   serverUrl:'https://api.1soche.com/wx'
@@ -10,30 +11,7 @@ App({
   onLaunch: function () {
     // 登录
     this.configReq();
-    wx.login({
-      success: res => {
-        console.log(res);
-        const { code } = res;
-        const data = {
-          form:{
-            interNumber:'10000009',
-            code
-          }
-        };
-        req.post('/wxLogin',data)
-        .then(data=>{
-          const { resultCode,businessResult='',openid } = data.body;
-          if(resultCode === '000000'){
-            wx.setStorageSync('openid',openid);
-          }else{
-            wx.showToast({
-              title:`授权失败-${businessResult}`
-            });
-          }
-        })
-       
-      }
-    })
+    wechatLogoin(req);
     // 获取用户信息
     wx.getSetting({
       success: res => {

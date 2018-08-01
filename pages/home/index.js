@@ -252,7 +252,7 @@ Page({
     // 当前点击的商品信息
     const { products } = this.data;
     const product = products.find(item => item.mealId === mealid);
-    
+    product.dataTime = datatime;
     product.orderDate = currentDateTab.content;
     delete product.icon;
     wx.setStorageSync('product', product);

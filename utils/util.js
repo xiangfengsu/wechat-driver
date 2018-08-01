@@ -21,4 +21,32 @@ export const getCurrentDate = ()=>{
   return `${year}-${month}-${day}`;
 }
 
+export const wechatLogoin = (req,cb)=>{
+  wx.login({
+    success: res => {
+      console.log(res);
+      const { code } = res;
+      const data = {
+        form:{
+          interNumber:'10000009',
+          code
+        }
+      };
+      req.post('/wxLogin',data)
+      .then(data=>{
+        const { resultCode,businessResult='',openid } = data.body;
+        if(resultCode === '000000'){
+          wx.setStorageSync('openid',openid);
+          cb && cb();
+        }else{
+          wx.showToast({
+            title:`授权失败-${businessResult}`
+          });
+        }
+      })
+     
+    }
+  })
+} 
+
 

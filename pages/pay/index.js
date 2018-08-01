@@ -1,4 +1,5 @@
 import req from '../../utils/request.js';
+import { wechatLogoin } from '../../utils/util.js';
 
 Page({
   data: {
@@ -188,7 +189,7 @@ Page({
   },
   handlePay() {
     const { product, sellerInfo, paramId, total } = this.data;
-
+    
     // 存使用的优惠券信息
     const currentCoupon = this.data.coupons.length > 0 ? this.data.coupons[this.data.currentCouponIndex] : { title:'无优惠券',price:0};
     wx.setStorageSync('payInfo', {
@@ -196,60 +197,60 @@ Page({
       couponPrice: currentCoupon.price,
       total,
     });
-
     wx.showLoading({
       title: "加载中",
       mask: true
     });
-    const mobile = wx.getStorageSync('token') || '';
-    console.log('@@@',paramId);
-    const params = {
-      form: {
-        "interNumber": "20000004",
-        mobile,
-        orderDate: product.dataTime,
-        mealType: product.mealType,
-        orderTime:sellerInfo.orderTime,
-        sellerId: sellerInfo.sellerId,
-        mealId: product.mealId,
-        ...paramId,
-        amount: total
-      }
-    };
-    wx.showNavigationBarLoading();
-    req.post('/mealPay', params)
-      .then(res => {
-        wx.hideLoading()
-        const {
-          code,
-          body:{ businessResult, openid, resultCode, nonceStr, prepayId, timeStamp, paySign }
-        } = res;
-        if(resultCode === '000000'){
-          wx.requestPayment({
-            openid,
-            timeStamp,
-            nonceStr,
-            paySign,
-            package: `prepay_id=${prepayId}`,
-            signType: 'MD5',
-            success:(res)=>{
-              console.log('res',res);
-              const { errMsg } = res;
-              if(errMsg === 'requestPayment:ok'){
-                wx.navigateTo({
-                  url: '/pages/paySuccess/index'
-                })
-              }
-            },
-            'fail':(res)=>{
-              console.log(res);
-              wx.showToast({
-                title:'支付失败'
-              });
-            },
-         })
+    wechatLogoin(req,()=>{
+      const mobile = wx.getStorageSync('token') || '';
+      const params = {
+        form: {
+          "interNumber": "20000004",
+          mobile,
+          orderDate: product.dataTime,
+          mealType: product.mealType,
+          orderTime:sellerInfo.orderTime,
+          sellerId: sellerInfo.sellerId,
+          mealId: product.mealId,
+          ...paramId,
+          amount: total
         }
-        wx.hideNavigationBarLoading();
+      };
+      wx.showNavigationBarLoading();
+      req.post('/mealPay', params)
+        .then(res => {
+          wx.hideLoading()
+          const {
+            code,
+            body:{ businessResult, openid, resultCode, nonceStr, prepayId, timeStamp, paySign }
+          } = res;
+          if(resultCode === '000000'){
+            wx.requestPayment({
+              openid,
+              timeStamp,
+              nonceStr,
+              paySign,
+              package: `prepay_id=${prepayId}`,
+              signType: 'MD5',
+              success:(res)=>{
+                console.log('res',res);
+                const { errMsg } = res;
+                if(errMsg === 'requestPayment:ok'){
+                  wx.navigateTo({
+                    url: '/pages/paySuccess/index'
+                  })
+                }
+              },
+              'fail':(res)=>{
+                console.log(res);
+                wx.showToast({
+                  title:'支付失败'
+                });
+              },
+          })
+          }
+          wx.hideNavigationBarLoading();
       });
+    });
   }
 })
