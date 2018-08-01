@@ -1,5 +1,5 @@
 import req from '../../utils/request.js';
-
+import { getCurrentDate } from '../../utils/util.js';
 const Dialog = require('../../components/dialog/dialog');
 
 Page({
@@ -81,19 +81,19 @@ Page({
           body: {
             checkStatus,
             data = [],
+            resultCode
           }
         } = res;
-        if (code - 0 === 200) {
+        if (resultCode === '000000') {
           wx.hideNavigationBarLoading();
           this.setData({
             data,
             checkStatus
           });
-          // console.log(data)
           this.renderTab(data);
           this.renderProducts(data);
         }
-      });
+    });
   },
   renderTab(data) {
     const tabs = data.map((item, index) => {
@@ -130,7 +130,8 @@ Page({
         mealId: `${item.mealId}`,
         orderStatus: item.orderStatus,
         mealType: item.mealType,
-        dataTime:orderDate
+        dataTime:orderDate,
+        canOrder:item.canOrder
       };
       for (const key in infoDict) {
         if (item[infoDict[key]]) {
@@ -146,23 +147,48 @@ Page({
   // 立即签到
   handleSignIn() {
     console.log("立即签到");
-    Dialog({
-      title: '',
-      message: '',
-      selector: '#zan-dialog-sign',
-      // buttonsShowVertical: true,
-      buttons: [{
-        text: '关闭',
-        type: 'cancel'
-      }, {
-        color: '#3CC51F',
-        text: '分享',
-        type: 'share',
-        openType: 'share'
-      }]
-    }).then(({ type }) => {
-      console.log('=== dialog with vertical buttons ===', `type: ${type}`);
-    });
+    const mobile = wx.getStorageSync('token') || '';
+    if(mobile === ''){
+      wx.navigateTo({
+        url: '/pages/login/index'
+      });
+    }else{
+      const params = {
+        form: {
+          interNumber: "50000001",
+          mobile
+        }
+      };
+      req.post('/saveDaySignIn', params)
+        .then(res => {
+          const {
+            body: {
+              resultCode
+            }
+          } = res;
+          if (resultCode === '000000') {
+            Dialog({
+              title: '',
+              message: '',
+              selector: '#zan-dialog-sign',
+              // buttonsShowVertical: true,
+              buttons: [{
+                text: '关闭',
+                type: 'cancel'
+              }, {
+                color: '#3CC51F',
+                text: '分享',
+                type: 'share',
+                openType: 'share'
+              }]
+            }).then(({ type }) => {
+              // console.log('=== dialog with vertical buttons ===', `type: ${type}`);
+            });
+          }
+      });
+      
+    }
+    
   },
   // 日期tab
   dateTabchange({ detail = '' }) {
@@ -173,12 +199,17 @@ Page({
   },
   // 立即预约
   handleOrder({ detail = {} }) {
+    console.log(detail);
     const { checkStatus } = this.data;
     const checkStatusDict = {
-      '-1': '审核失败',
+      '2': '审核失败',
       '0': '待审核',
       '1': '审核通过',
+      'canOrder':'不能预约'
     }
+    const { mealtype, mealid,canorder,datatime } = detail;
+    const hours = new Date().getHours();
+    const currentTime = getCurrentDate();
     const token = wx.getStorageSync('token');
     if (token === '') {
       // 跳转登录
@@ -191,8 +222,27 @@ Page({
         title: checkStatusDict[`${checkStatus}`]
       });
       return;
+    }else if(canorder == 0  ){
+      wx.showToast({
+        title: checkStatusDict['canOrder']
+      });
+      return ;
     }
-    const { mealtype, mealid } = detail;
+    if(currentTime === datatime){
+      if(mealtype == 1 && hours >=15  ){
+        wx.showToast({
+          title: '无法预订午餐'
+        });
+        return ;
+      }
+      if(mealtype == 2 && hours >=21  ){
+        wx.showToast({
+          title: '无法预订当天餐'
+        });
+        return ;
+      }
+    }
+    
     const currentDateTab = this.data.dateTab.list[this.data.dateTab.selectedId];
     
     const params = {

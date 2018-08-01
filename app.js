@@ -4,6 +4,7 @@ import req from './utils/request.js';
 const config = {
   // serverUrl: 'http://118.190.154.11:3000/mock/18/wx'
   serverUrl:'https://api.1soche.com/wx'
+  // serverUrl:'http://192.168.2.230:8080/wx'
 };
 App({
   onLaunch: function () {
@@ -64,7 +65,8 @@ App({
             const { resultCode,businessResult='' } = res.data.body;
             if(resultCode!=='000000'){
               wx.showToast({
-                title:businessResult
+                title:businessResult,
+                icon:'none'
               });
             }
             return true;

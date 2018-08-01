@@ -1,6 +1,6 @@
 <view class="container">
     <view class="couponList">
-        <view class="couponItem" wx:for="{{cashRedList}}" wx:key="index" >
+        <view class="couponItem" wx:if="{{cashRedList.length!==0}}" wx:for="{{cashRedList}}" wx:key="index" >
             <view class="wrap row align_items_c just_cont_sb">
                 <view class="l-info row align_items_c">
                     <image class="icon" src="../../img/ticket_icon.jpg" />
@@ -15,7 +15,7 @@
                 </view>
             </view>
         </view>
-        <view class="nocoupontip" hidden>
+        <view class="nocoupontip" wx:if="{{cashRedList.length===0}}">
             暂无优惠券~~
         </view>
     </view>

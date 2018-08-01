@@ -27,6 +27,8 @@
           wx:if="{{ orderBtn }}"
           data-mealType="{{ mealType }}"
           data-mealId="{{ mealId }}"
+          data-canOrder="{{ canOrder }}"
+          data-dataTime="{{ dataTime }}"
           bind:tap="handleOrderTap"
         >
           立即预约

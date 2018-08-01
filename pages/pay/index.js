@@ -86,9 +86,9 @@ Page({
     const mobile = wx.getStorageSync('token') || '';
     const params = {
       form: {
-        "interNumber": "20000003",
+        interNumber: "20000003",
         mobile,
-        orderDate: product.orderDate,
+        orderDate: product.dataTime,
         mealType: product.mealType,
         sellerId: sellerInfo.sellerId,
         mealId: product.mealId
@@ -102,42 +102,51 @@ Page({
           code,
           body: {
             cashRedList=[],
-            monthCardList=[]
+            monthCardList=[],
+            resultCode
           }
         } = res;
-        if (code - 0 === 200) {
+        if (resultCode === '000000') {
           wx.hideNavigationBarLoading();
           this.renderCoupons(cashRedList, monthCardList)
         }
       });
   },
   renderCoupons(cashRedList, monthCardList) {
-    const cashRed = cashRedList[0];
-    const monthCard = monthCardList[0];
-    // console.log(cashRed, monthCard)
     const coupons = [];
+    let cashRed = {} ;
+    let monthCard = {};
+    let total = this.data.priceRight;
     const cashRedIdDict = {
       '1': '注册红包',
       '2': '推荐红包'
     };
-    coupons.push({
-      title: cashRedIdDict[`${cashRed.cashRedId}`],
-      priceText: `立减${cashRed.totalCash}元`,
-      price: `${cashRed.totalCash}`,
-      current: true,
-      accountCashId: cashRed.accountCashId,
-    });
-    // 待修改
-    // coupons.push({
-    //   title: monthCard.groupName,
-    //   priceText: `立减${monthCard.totalCash}元`,
-    //   price: `${monthCard.totalCash}`,
-    //   current: false,
-    //   monthCardId: monthCard.monthCardId
-    // });
+    if(cashRedList.length>0){
+      cashRed = Object.assign(cashRedList[0],{
+        accountCashId:cashRedList[0].id
+      });
+      coupons.push({
+        title: cashRedIdDict[`${cashRed.cashRedId}`],
+        priceText: `立减${cashRed.totalCash}元`,
+        price: `${cashRed.totalCash}`,
+        current: true,
+        accountCashId: cashRed.accountCashId,
+      });
+      total = this.data.priceRight - cashRed.totalCash;
+    }
+    if(monthCardList.length>0){
+      monthCard = monthCardList[0];
+      coupons.push({
+        title: monthCard.groupName,
+        priceText: `立减${monthCard.totalCash}元`,
+        price: `${monthCard.totalCash}`,
+        current: false,
+        monthCardId: monthCard.monthCardId
+      });
+    }
     this.setData({
       coupons,
-      total: this.data.priceRight - cashRed.totalCash,
+      total,
       paramId: {
         accountCashId: cashRed.accountCashId
       },
@@ -181,7 +190,7 @@ Page({
     const { product, sellerInfo, paramId, total } = this.data;
 
     // 存使用的优惠券信息
-    const currentCoupon = this.data.coupons[this.data.currentCouponIndex];
+    const currentCoupon = this.data.coupons.length > 0 ? this.data.coupons[this.data.currentCouponIndex] : { title:'无优惠券',price:0};
     wx.setStorageSync('payInfo', {
       couponTitle: currentCoupon.title,
       couponPrice: currentCoupon.price,
@@ -193,6 +202,7 @@ Page({
       mask: true
     });
     const mobile = wx.getStorageSync('token') || '';
+    console.log('@@@',paramId);
     const params = {
       form: {
         "interNumber": "20000004",
@@ -224,6 +234,12 @@ Page({
             signType: 'MD5',
             success:(res)=>{
               console.log('res',res);
+              const { errMsg } = res;
+              if(errMsg === 'requestPayment:ok'){
+                wx.navigateTo({
+                  url: '/pages/paySuccess/index'
+                })
+              }
             },
             'fail':(res)=>{
               console.log(res);

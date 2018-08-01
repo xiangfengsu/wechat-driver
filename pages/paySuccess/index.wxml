@@ -4,14 +4,14 @@
       <image class="dialog-sign__img" src="../../img/icon/home_07_03.jpg"></image>
       <text class="dialog-sign__text">预定成功</text>
       <text class="dialog-sign__message">转发分享本小程序可额外获赠2张价值5元的优惠券.</text>
-      <i-button i-class="share-btn">转发分享</i-button>
+      <i-button i-class="share-btn" bindtap="handleBack">返回首页</i-button>
     </view>
   </view>
 
   <view class="info">
     <view class="info-body">
       <view class="info-body-left">
-        <text class="info-body-left__title">千里香馄饨</text>
+        <text class="info-body-left__title">{{addressName}}</text>
         <description
           description-class="info-body-left__description"
           descriptions="{{descriptions}}"

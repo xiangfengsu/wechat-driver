@@ -9,7 +9,7 @@ const orderStatus = {
   "-3":"已退款",
   "-4":"取消支付",
   0:"未支付",
-  1:"支付中",
+  1:"支付完成",
   2:"已完成",
 
 
@@ -62,7 +62,6 @@ Page({
         const { code,body:{ orderList=[],businessResult,resultCode } } = data;
         wx.hideNavigationBarLoading();
         if(resultCode === '000000'){
-        
           this.setData({
             orderList
           });
@@ -80,28 +79,35 @@ Page({
     
   },
   fetchRefund(cb){
+    const token = wx.getStorageSync('token');
     const data={
       form:{
-        "interNumber": "30000001",
+        interNumber: "30000003",
+        mobile: token,
+        orderId:this.refundOrderId
       }
     };
     req.post('/refundMeal',data)
     .then(data=>{
-      const { body:{flag} } = data;
-      const status =  flag - 0;
-      if(status === 0 || status === 1){
-        cb && cb();
-      }else{
-        wx.showToast({
-          title:'申请退款失败',
-          duration:2500,
-          mask:true
-        });
+      const { body:{ flag ,resultCode } } = data;
+      if(resultCode === '000000'){
+        const status =  flag - 0;
+        if(status === 0 || status === 1){
+          cb && cb();
+        }else{
+          wx.showToast({
+            title:'申请退款失败',
+            duration:2500,
+            mask:true
+          });
+        }
       }
     });
   },
   // 退款
-  handleRefund () {
+  handleRefund ({ currentTarget }) {
+    const { dataset:{orderid} } = currentTarget;
+    this.refundOrderId = orderid;
     this.setData({
       [`refundActionsheet.show`]: true
     });
@@ -127,6 +133,7 @@ Page({
           selector: '#zan-dialog-refund'
         }).then((res) => {
           console.log(1, res);
+          this.fetchOrderList();
           this.setData({
             [`refundActionsheet.actions[${index}].loading`]: false
           });

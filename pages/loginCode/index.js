@@ -72,10 +72,6 @@ Page({
         });
         this.verifyCode = verifyCode;
         this.source = source - 0;
-      }else{
-        wx.showToast({
-          title:businessResult
-        });
       }
       
     });

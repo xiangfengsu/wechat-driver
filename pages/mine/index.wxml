@@ -1,7 +1,9 @@
 <view class="container">
     <view class="header">
         <view class="userInfo row align_items_c" wx:if="{{loginStatus}}">
-            <image class="avatar" src="{{avatar}}"></image>  
+            
+            <open-data class="avatar" type="userAvatarUrl"></open-data>
+            
             <view class="userText">
                 <view class="name">{{name}}</view>
                 <view class="mobile">{{mobile}}</view>
@@ -27,19 +29,19 @@
                 </zan-cell>
             </zan-panel>
         </templete> 
-        <templete wx:if="{{loginStatus && checkStatus < 1}}">
-            <zan-panel hideBorderTop wx:if="{{checkStatus < 1}}">
+        <templete wx:if="{{loginStatus && checkStatus == 0 || loginStatus && checkStatus == 2 }}">
+            <zan-panel hideBorderTop>
                 <zan-cell title="审核状态" label="{{statusText}}">
                 </zan-cell>
             </zan-panel>
-            <zan-panel hideBorderTop wx:if="{{checkStatus == -1}}">
-                <zan-cell title="驳回原因" label="驾驶证图片不清楚">
+            <zan-panel hideBorderTop wx:if="{{checkStatus == 2}}">
+                <zan-cell title="驳回原因" label="{{checkMessage}}">
                     <view slot="footer" class="reeditBtn" bindtap="reeditHandle">重新编辑</view>
                 </zan-cell>
             </zan-panel>
         </templete>   
         <zan-panel hideBorderTop>
-            <zan-cell title="平台协议及声明"    is-link>
+            <zan-cell title="平台协议及声明"  is-link url="/pages/agreement/index">
                 <image  slot="icon" class="cell-icon" src="/img/mineicon/icon_4.jpg" />
             </zan-cell>
         </zan-panel>
@@ -56,3 +58,4 @@
         </view>
     </view>
 </view>
+

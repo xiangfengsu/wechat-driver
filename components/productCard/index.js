@@ -22,7 +22,9 @@ Component({
     priceRight: String,
     orderBtn: Boolean,
     mealType: String,
-    mealId: String
+    mealId: String,
+    canOrder:String,
+    dataTime:String
   },
 
   /**

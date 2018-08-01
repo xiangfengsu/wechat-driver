@@ -33,7 +33,7 @@
               </view>
               <view class="card-footer" wx:if="{{orderItem.orderStatus!= 2}}">
                 <view class="card-footer-btn__qr" bind:tap="handleQR" wx:if="{{orderItem.orderStatus == 1}}" data-qrcodeurl="{{orderItem.qrCodeImage}}">二维码取餐</view>
-                <view class="card-footer-btn__refund" bind:tap="handleRefund" wx:if="{{orderItem.orderStatus == 1}}">退款</view>
+                <view class="card-footer-btn__refund" bind:tap="handleRefund" wx:if="{{orderItem.orderStatus == 1}}" data-orderid="{{orderItem.orderId}}">退款</view>
                 <view class="card-footer-btn__refunded" wx:if="{{orderItem.orderStatus == 3}}">已退款</view>
               </view>
             </view>

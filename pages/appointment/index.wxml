@@ -8,7 +8,7 @@
             <view class="radio-slot-left">
               <view class="radio-slotleft-row">
                 <text class="radio-slot__name">{{item.name}}</text>
-                <text class="radio-slot__distance">{{item.distance}}km</text>
+                <text class="radio-slot__distance">{{item.distance}}</text>
               </view>
               <view class="radio-slot-left-row">
                 <view class="icon-location"></view>

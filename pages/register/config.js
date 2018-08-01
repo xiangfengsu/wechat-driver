@@ -46,19 +46,19 @@ export default {
         {
             key: 'driverFrontUrl',
             title: '驾驶证',
-            value: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3120507481,1878382528&fm=27&gp=0.jpg',
+            value:'',
             hidden:true
         },
         {
             key: 'travelFrontUrl',
             title: '行驶证',
-            value: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3120507481,1878382528&fm=27&gp=0.jpg',
+            value:'',
             hidden:true
         },
         {
             key: 'certificateUrl',
             title: '运营许可证',
-            value: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3120507481,1878382528&fm=27&gp=0.jpg',
+            value:'', 
             hidden:true
         },
         {

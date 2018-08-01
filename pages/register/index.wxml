@@ -55,7 +55,7 @@
             <checkbox value="checked" checked="checked" color="rgb(5,142,120)"/>
         </checkbox-group>
         <text class="t1">我已阅读并同意</text>
-        <text class="t2">《用户服务协议》</text>
+        <navigator url="/pages/agreement/index" open-type="navigate" class="t2">《用户服务协议》</navigator>
     </view>
     <view class="formBtn">
         <button formType="submit">提交审核</button>

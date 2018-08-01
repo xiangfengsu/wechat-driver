@@ -25,7 +25,8 @@ Page({
     this.setData({
       name: data.name,
       orderTimeValue: data.orderTimeValue,
-      descriptions
+      descriptions,
+      addressName:data.name
     });
   },
   renderProduct(data) {
@@ -60,5 +61,10 @@ Page({
     // this.setData({
     //   [`coupons[${index}].current`]: true
     // });
+  },
+  handleBack(){
+    wx.switchTab({
+      url:'/pages/home/index'
+    })
   }
 })

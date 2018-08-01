@@ -1,7 +1,7 @@
 import req from '../../utils/request.js';
 const app = getApp();
 const statusDic = [{
-  key:-1,
+  key:2,
   value:'审核失败'
 },{
   key:0,
@@ -16,10 +16,11 @@ Page({
     loginStatus:false,
     phoneNumber:'400-820-5151'
   },
-  onLoad(options) {
+  onShow(options) {
     const token = wx.getStorageSync('token');
     token!=='' && this.getUserInfo();
   },
+  
   getUserInfo(){
     const token = wx.getStorageSync('token') || '';
     const data = {
@@ -30,46 +31,21 @@ Page({
     };
     req.post('/queryUserInfo',data)
     .then(data=>{
-      const { name,platenumber,checkStatus,mobile } = data.body;
+      const { name,platenumber,checkStatus,checkMessage,mobile } = data.body;
       const statusTextObj = statusDic.find(item=>{
         return item.key === checkStatus-0;
       });
-      console.log('checkStatus',checkStatus);
-      this.showUserInfo();
+      // console.log('checkStatus',checkStatus);
       this.setData({
         name,
         mobile,
-        platenumber,
+        platenumber:platenumber.toUpperCase(),
         checkStatus,
+        checkMessage,
         statusText:statusTextObj['value'],
         loginStatus:true
       })
     })
-  },
-  showUserInfo(){
-    if (app.globalData.userInfo) {
-      this.setData({
-        avatar: app.globalData.userInfo.avatarUrl,
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          avatar: app.globalData.userInfo.avatarUrl,
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            avatar: app.globalData.userInfo.avatarUrl,
-          })
-        }
-      })
-    }
   },
   callTelHandle(e){
     const phoneNumber = this.data.phoneNumber;

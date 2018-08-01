@@ -1,0 +1,4 @@
+.agreementBox{
+    padding: 20rpx;
+    font-size: 12px;
+}

@@ -154,6 +154,7 @@ Page({
     self.showLoading('图片上传中...');
     wx.uploadFile({
       url: `${req.getBaseUrl()}/uploadImg`,
+      // url:'http://127.0.0.1:7001/form',
       filePath: filestream,
       formData: {
         interNumber: 10000007,
@@ -161,27 +162,43 @@ Page({
       },
       name: 'imageStream',
       header: {
-        'content-type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data'
       },
       success: function (res) {
-        const { body:{ imageUrl } } = JSON.parse(res.data);
-        const imgList = self.data.imgList.slice(0);
-        console.log('imgList',imgList,type);
-        const newImgList = imgList.map(item=>{
-          if(item.key === type){
-            return {
-              ...item,
-              url:imageUrl
+        // console.log('##',res)
+        const { statusCode ,data } = res;
+        if(statusCode === 200){
+          const { body:{ imageUrl } } = JSON.parse(data);
+          const imgList = self.data.imgList.slice(0);
+          // console.log('imgList',imgList,type);
+          const newImgList = imgList.map(item=>{
+            if(item.key === type){
+              return {
+                ...item,
+                url:imageUrl
+              }
+            }else{
+              return item;
             }
-          }else{
-            return item;
-          }
-        });
-        console.log('newImgList',newImgList);
-        self.setData({
-          imgList:newImgList
-        });
-        self.updateFormValue(type,imageUrl);
+          });
+          // console.log('newImgList',newImgList);
+          self.setData({
+            imgList:newImgList
+          });
+          self.updateFormValue(type,imageUrl);
+        }else if(statusCode === 413){
+          wx.showToast({
+            title:'文件太大，上传失败',
+            icon:'none',
+            mask:true
+          });
+        }else{
+          wx.showToast({
+            title:'上传失败',
+            mask:true
+          });
+        }
+        
       },
       fail: function (res) {
         wx.showToast({
@@ -220,6 +237,9 @@ Page({
     },500);
   },
   fetchRegisterOrUpdate(formValue){
+    Object.assign(formValue,{
+      platenumber:formValue.platenumber.toUpperCase()
+    });
     const type = this.type;
     const dic = {
       create:{

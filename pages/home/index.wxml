@@ -22,6 +22,8 @@
       price="{{ item.price }}"
       mealType="{{item.mealType}}"
       mealId="{{item.mealId}}"
+      canOrder="{{item.canOrder}}"
+      dataTime="{{item.dataTime}}"
       orderBtn
       bind:handleOrder="handleOrder"
     >
@@ -35,7 +37,7 @@
     <view class="dialog-sign">
       <image class="dialog-sign__img" src="../../img/icon/home_07_03.jpg"></image>
       <text class="dialog-sign__text">签到成功</text>
-      <text class="dialog-sign__message">获赠2张价值5元的优惠券，\n转发分享本小程序\n可额外获赠2张价值5元的优惠券.</text>
+      <!-- <text class="dialog-sign__message">获赠2张价值5元的优惠券，\n转发分享本小程序\n可额外获赠2张价值5元的优惠券.</text> -->
     </view>
   </zan-dialog>
 </view>

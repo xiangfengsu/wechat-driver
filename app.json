@@ -1,17 +1,16 @@
 {
   "pages":[
     "pages/home/index",
+    "pages/agreement/index",
     "pages/mine/index",
     "pages/pay/index",
-    
     "pages/order/index",
     "pages/appointment/index",
     "pages/paySuccess/index",
-    
     "pages/coupon/index",
     "pages/login/index",
-    "pages/register/index",
     "pages/loginCode/index",
+    "pages/register/index",
     "pages/card/index"
   ],
   "window":{
