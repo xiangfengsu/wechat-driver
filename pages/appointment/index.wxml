@@ -1,5 +1,6 @@
 <view class="container">
   <view class="title">取餐点</view>
+  <!-- <button class = 'auth' open-type = 'openSetting'  > 微信用户授权 </button> -->
   <i-panel>
     <i-radio-group current="{{currentRadio}}" bindchange="handleRadioChange">
       <scroll-view scroll-y style="height: 600rpx;">

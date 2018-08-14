@@ -88,7 +88,7 @@ page {
 
 .time-picker__item {
   position: relative;
-  width: 186rpx;
+  width: 210rpx;
   height: 60rpx;
   line-height: 60rpx;
   text-align: center;

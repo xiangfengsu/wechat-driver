@@ -3,30 +3,13 @@ Page({
   data: {
     sellerList: [],
     currentRadio: -1,
-    timePicker: [{
-      key:1,
-      value:'11:00'
-  },{
-      key:2,
-      value:'12:00'
-  },{
-      key:3,
-      value:'13:00'
-  },{
-      key:4,
-      value:'14:00'
-  },{
-      key:5,
-      value:'15:00'
-  },{
-      key:6,
-      value:'半小时内'
-  }],
-    currentTime: 6,
+    timePicker: [],
+    currentTime: 1,
   },
   onLoad(){
     // this.testStorage();
     this.fetchSellerList();
+    this.setTimePicker();
   },
   handleRadioChange({ detail = {} }) {
     this.setData({
@@ -79,7 +62,7 @@ Page({
     wx.setStorageSync('product', product)
   },
   fetchSellerList(){
-    const fetchHandle = (geo)=>{
+    const fetchHandle = (geo='')=>{
       const { mealType,dataTime } = wx.getStorageSync('product') || {}; 
       const mobile =  wx.getStorageSync('token') || ''; 
       const data={
@@ -113,9 +96,60 @@ Page({
         const { latitude,longitude} = res;
         const geo = `${latitude},${longitude}`;
         fetchHandle(geo);
+      },
+      fail:()=>{
+        fetchHandle();
       }
     });
     
     
+  },
+  setTimePicker() {
+    const product = wx.getStorageSync('product');
+    const timePickerList = [
+      [{
+        key: 1,
+        value: '11:00'
+      }, {
+        key: 2,
+        value: '12:00'
+      }, {
+        key: 3,
+        value: '13:00'
+      }, {
+        key: 4,
+        value: '14:00'
+      }, {
+        key: 5,
+        value: '15:00'
+      }, {
+        key: 6,
+        value: '(午饭)半小时内'
+      }],
+      [{
+        key: 7,
+        value: '17:00'
+      }, {
+        key: 8,
+        value: '18:00'
+      }, {
+        key: 9,
+        value: '19:00'
+      }, {
+        key: 10,
+        value: '20:00'
+      }, {
+        key: 11,
+        value: '21:00'
+      }, {
+        key: 12,
+        value: '(晚饭)半小时内'
+      }]
+    ]
+    const currentTimePickerList = timePickerList[product.mealType - 1]
+    this.setData({
+      timePicker: currentTimePickerList,
+      currentTime: currentTimePickerList[0].key
+    });
   }
 })

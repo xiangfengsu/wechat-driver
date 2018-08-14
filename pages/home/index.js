@@ -88,7 +88,8 @@ Page({
           wx.hideNavigationBarLoading();
           this.setData({
             data,
-            checkStatus
+            checkStatus,
+            [`dateTab.selectedId`]: 0
           });
           this.renderTab(data);
           this.renderProducts(data);

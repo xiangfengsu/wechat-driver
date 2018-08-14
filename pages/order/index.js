@@ -47,7 +47,7 @@ Page({
     
   },
   fetchOrderList(){
-    const fetchHandle = (geo)=>{
+    const fetchHandle = (geo='')=>{
       const mobile = wx.getStorageSync('token') || '';
       const data={
         form:{
@@ -74,6 +74,9 @@ Page({
         const { latitude,longitude} = res;
         const geo = `${latitude},${longitude}`;
         fetchHandle(geo);
+      },
+      fail:()=>{
+        fetchHandle();
       }
     });
     
